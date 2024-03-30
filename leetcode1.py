@@ -6,4 +6,4 @@ class Solution:
         return len(s.split()[-1])
 
 
-# LeetCode ni o'zida run qilib ko'ring.
+# LeetCode ni o'zida python3 ni tanlab run qilib ko'ring.

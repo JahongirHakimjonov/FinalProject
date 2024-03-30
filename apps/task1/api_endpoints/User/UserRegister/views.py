@@ -14,14 +14,17 @@ class UserRegisterViewSet(viewsets.ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
+        if serializer.is_valid():
             user = serializer.save()
             if user:
                 headers = self.get_success_headers(serializer.data)
                 return Response(
                     serializer.data, status=status.HTTP_201_CREATED, headers=headers
                 )
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @action(detail=True, methods=["post"])
     def set_password(self, request, pk=None):

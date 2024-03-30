@@ -14,18 +14,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         password = validated_data["password"]
         email = validated_data.get("email")
 
-        user = User.objects.filter(username=username).first()
-        if user:
-            if user.is_deleted:
-                user.restore()
-                user.email = email
-                user.set_password(password)
-                user.save()
-            else:
-                raise serializers.ValidationError(
-                    "A user with that username already exists."
-                )
-        else:
-            user = User.create_user(username=username, password=password, email=email)
-
+        user = User.objects.create(username=username, email=email)
+        user.set_password(password)
+        user.save()
         return user

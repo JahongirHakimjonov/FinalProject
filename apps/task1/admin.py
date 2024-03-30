@@ -5,7 +5,7 @@ from apps.task1.models import User
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ["id", "username", "is_deleted"]
+    list_display = ["id", "username", "email", "is_deleted"]
     search_fields = ["username", "email"]
     list_filter = ["is_deleted"]
     actions = ["delete_users"]

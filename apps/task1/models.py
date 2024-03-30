@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.hashers import make_password, check_password
+import uuid
 
 
 class NonDeletedManager(models.Manager):
@@ -14,14 +15,6 @@ class SoftDeleteModel(models.Model):
 
     class Meta:
         abstract = True
-
-    def delete(self, *args, **kwargs):
-        self.is_deleted = True
-        self.save()
-
-    def restore(self):
-        self.is_deleted = False
-        self.save()
 
 
 class User(SoftDeleteModel):
@@ -45,3 +38,9 @@ class User(SoftDeleteModel):
         user.set_password(password)
         user.save()
         return user
+
+    def soft_delete(self):
+        self.is_deleted = True
+        self.username = self.username + uuid.uuid4().hex[:6].upper()
+        self.save()
+        return self

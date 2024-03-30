@@ -12,7 +12,7 @@ class UserDeleteViewSet(viewsets.ViewSet):
     def delete(self, request, pk=None):
         user = User.objects.filter(pk=pk).first()
         if user and not user.is_deleted:
-            user.delete()
+            user.soft_delete()
             user.save()
             return Response({"message": "User deleted"})
         return Response({"message": "User not found"})
