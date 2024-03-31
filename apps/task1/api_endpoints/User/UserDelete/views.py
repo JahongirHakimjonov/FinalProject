@@ -1,3 +1,5 @@
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -5,6 +7,7 @@ from apps.task1.models import User
 from apps.task1.api_endpoints.User.UserDelete.serializers import UserSerializer
 
 
+@method_decorator(csrf_exempt, name="dispatch")
 class UserDeleteViewSet(viewsets.ViewSet):
     serializer_class = UserSerializer
 

@@ -2,7 +2,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from apps.task2.models import Vacancy
-from apps.task2.api_endpoints.Vacancy.VacancyFilter.serializers import VacancyFilterSerializer
+from apps.task2.api_endpoints.Vacancy.VacancyFilter.serializers import (
+    VacancyFilterSerializer,
+)
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 
@@ -10,11 +12,28 @@ from drf_yasg import openapi
 class VacancyFilterAPIView(APIView):
     serializer_class = VacancyFilterSerializer
 
-    @swagger_auto_schema(manual_parameters=[
-        openapi.Parameter('salary_from', openapi.IN_QUERY, description="Minimum salary", type=openapi.TYPE_INTEGER),
-        openapi.Parameter('salary_to', openapi.IN_QUERY, description="Maximum salary", type=openapi.TYPE_INTEGER),
-        openapi.Parameter('salary', openapi.IN_QUERY, description="Exact salary", type=openapi.TYPE_INTEGER),
-    ])
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter(
+                "salary_from",
+                openapi.IN_QUERY,
+                description="Minimum salary",
+                type=openapi.TYPE_INTEGER,
+            ),
+            openapi.Parameter(
+                "salary_to",
+                openapi.IN_QUERY,
+                description="Maximum salary",
+                type=openapi.TYPE_INTEGER,
+            ),
+            openapi.Parameter(
+                "salary",
+                openapi.IN_QUERY,
+                description="Exact salary",
+                type=openapi.TYPE_INTEGER,
+            ),
+        ]
+    )
     def get(self, request, *args, **kwargs):
         queryset = self.get_queryset()
         serializer = self.serializer_class(queryset, many=True)
