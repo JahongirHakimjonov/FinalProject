@@ -1,10 +1,6 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from apps.task2.api_endpoints.Vacancy.VacancyFilter.views import VacancyFilterViewSet
-
-router = DefaultRouter()
-router.register(r"vacancies", VacancyFilterViewSet, basename="vacancy")
+from django.urls import path
+from apps.task2.api_endpoints.Vacancy.VacancyFilter.views import VacancyFilterAPIView
 
 urlpatterns = [
-    path("", include(router.urls)),
+    path('vacancies/', VacancyFilterAPIView.as_view(), name='vacancy-filter'),
 ]

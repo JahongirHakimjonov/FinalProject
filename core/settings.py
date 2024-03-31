@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "apps.task3.apps.Task3Config",
     "apps.task4.apps.Task4Config",
     "rest_framework",
+    'drf_yasg',
     "drf_spectacular",
     "drf_spectacular_sidecar",
 ]
