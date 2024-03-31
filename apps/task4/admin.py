@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.task4.models import Sport, Team, Player, Match, Goal, Card
+from apps.task4.models import Sport, Team, Player, Match, Goal, Card, Substitution
 
 
 @admin.register(Sport)
@@ -59,3 +59,15 @@ class CardAdmin(admin.ModelAdmin):
     list_display = ["match", "player", "card_type", "minute"]
     search_fields = ["match__home_team__name", "match__away_team__name", "player__name"]
     list_filter = ["match", "player", "card_type", "minute"]
+
+
+@admin.register(Substitution)
+class SubstitutionAdmin(admin.ModelAdmin):
+    list_display = ["match", "player_out", "player_in", "minute"]
+    search_fields = [
+        "match__home_team__name",
+        "match__away_team__name",
+        "player_out__name",
+        "player_in__name",
+    ]
+    list_filter = ["match", "player_out", "player_in"]

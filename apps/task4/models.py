@@ -110,3 +110,21 @@ class Card(AbstractModel):
     class Meta:
         verbose_name_plural = "Cards"
         db_table = "cards"
+
+
+class Substitution(AbstractModel):
+    match = models.ForeignKey(Match, on_delete=models.CASCADE)
+    player_out = models.ForeignKey(
+        Player, related_name="player_out", on_delete=models.CASCADE
+    )
+    player_in = models.ForeignKey(
+        Player, related_name="player_in", on_delete=models.CASCADE
+    )
+    minute = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.player_out} out - {self.player_in} in"
+
+    class Meta:
+        verbose_name_plural = "Substitutions"
+        db_table = "substitutions"

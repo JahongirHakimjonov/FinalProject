@@ -59,6 +59,7 @@ Sport musobaqalari uchun quyidagi modellar yaratilgan:
 4. Match
 5. Goal
 6. Card
+7. Substitution
 
 ### Task5
 LeetCode misollari leetcode1.py va leetcode2.py fayllarida yechilgan.

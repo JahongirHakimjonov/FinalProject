@@ -178,6 +178,7 @@ JAZZMIN_SETTINGS = {
         "task4.Match": "fas fa-futbol",
         "task4.Goal": "fas fa-futbol",
         "task4.Card": "fas fa-futbol",
+        "task4.Substitution": "fas fa-futbol",
     },
     "copyright": "Najot Ta'lim",
     "default_icon_parents": "fas fa-chevron-circle-right",
